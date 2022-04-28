@@ -16,5 +16,6 @@ while [ $# -gt 0 ]; do
 done
 
 folder_full_path=$(find "$(cd ..; pwd)" -type d -name "$output_folder")
-awk -v INDEX="$links_index" 'BEGIN {FS=";"} NR>1 {print $INDEX}' $input | xargs -P $num_workers \
-| xargs -P $num_workers wget -P $folder_full_path
+echo $folder_full_path
+awk -v INDEX="$links_index" 'BEGIN {FS=";"} NR>1 {print $INDEX}' $input \
+ | xargs -P $num_workers wget -P $folder_full_path
